@@ -126,7 +126,11 @@ namespace Immigration.UI
         {
             Console.WriteLine("You want to immigrate by family? Ok, do you have a spouse or parent who is /n" +
                 "a US citizen or Lawful Permanent Resident? Y or N?");
-            //var answer == Console.ReadLine();
+            var answer = Console.ReadLine();
+            if (answer == "1")
+            {
+
+            }
         }
 
             //else Console.WriteLine("You must choose Y or N.");
