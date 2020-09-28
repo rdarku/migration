@@ -16,8 +16,26 @@ namespace Immigration.Data
 
         public MaritalStatus MaritalStatus { get; set; }
 
-        public int Age { get; set; }
+        public int Age
+        {
+            get
+            {
+                TimeSpan ageSpan = DateTime.Now - DateOfBirth;
+                double totalAgeInYears = ageSpan.TotalDays / 365.25;
+                return Convert.ToInt32(Math.Floor(totalAgeInYears));
+            }
+        }
 
-        public bool IsMinor { get; set; }
+        public bool IsMinor { get {
+                return Age < 21;
+            } 
+        }
+
+        public CountryOfOrigin countryOfOrigin { get; set; }
+
+        // answers list
+        // question => answer
+        // 
+
     }
 }
