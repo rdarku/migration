@@ -17,16 +17,35 @@ namespace Immigration.UI
 
         public void Play()
         {
-            Console.WriteLine("Yay!");
-
-
+            GameStart();
             GameMenu();
         }
 
+        private void GameStart()
+        {
+            string titleText = @"
+  ________                              _________                  .___   ________                       
+ /  _____/______   ____   ____   ____   \_   ___ \_____ _______  __| _/  /  _____/_____    _____   ____  
+/   \  __\_  __ \_/ __ \_/ __ \ /    \  /    \  \/\__  \\_  __ \/ __ |  /   \  ___\__  \  /     \_/ __ \ 
+\    \_\  \  | \/\  ___/\  ___/|   |  \ \     \____/ __ \|  | \/ /_/ |  \    \_\  \/ __ \|  Y Y  \  ___/ 
+ \______  /__|    \___  >\___  >___|  /  \______  (____  /__|  \____ |   \______  (____  /__|_|  /\___  >
+        \/            \/     \/     \/          \/     \/           \/          \/     \/      \/     \/ 
+                                                                                                         
+                                                                                                         
+                                                                                                         
+                                                                                                         
+                                                                                                         
+                                                                                                         
+";
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine(titleText);
+            Console.ResetColor();
+        }        
+
         public void GameMenu()
         {
-            Console.Clear();
-            Console.WriteLine("Welcome to the Green Card Game!");
+            GameStart();
 
             GetPlayerProperties();
 
