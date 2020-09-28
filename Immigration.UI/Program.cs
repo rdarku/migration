@@ -6,6 +6,7 @@ namespace Immigration.UI
     {
         static void Main(string[] args)
         {
+            Console.Title = "Green Card Game";
             var game = new Game();
             game.Play();
         }

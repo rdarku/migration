@@ -1,11 +1,5 @@
 ﻿using Immigration.Data;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Immigration.UI
 {
@@ -23,16 +17,35 @@ namespace Immigration.UI
 
         public void Play()
         {
-            Console.WriteLine("Yay!");
-
-
+            GameStart();
             GameMenu();
         }
 
+        private void GameStart()
+        {
+            string titleText = @"
+  ________                              _________                  .___   ________                       
+ /  _____/______   ____   ____   ____   \_   ___ \_____ _______  __| _/  /  _____/_____    _____   ____  
+/   \  __\_  __ \_/ __ \_/ __ \ /    \  /    \  \/\__  \\_  __ \/ __ |  /   \  ___\__  \  /     \_/ __ \ 
+\    \_\  \  | \/\  ___/\  ___/|   |  \ \     \____/ __ \|  | \/ /_/ |  \    \_\  \/ __ \|  Y Y  \  ___/ 
+ \______  /__|    \___  >\___  >___|  /  \______  (____  /__|  \____ |   \______  (____  /__|_|  /\___  >
+        \/            \/     \/     \/          \/     \/           \/          \/     \/      \/     \/ 
+                                                                                                         
+                                                                                                         
+                                                                                                         
+                                                                                                         
+                                                                                                         
+                                                                                                         
+";
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine(titleText);
+            Console.ResetColor();
+        }        
+
         public void GameMenu()
         {
-            Console.Clear();
-            Console.WriteLine("Welcome to the Green Card Game!");
+            GameStart();
 
             GetPlayerProperties();
 
@@ -121,19 +134,47 @@ namespace Immigration.UI
                 GameMenu();
             }
         }
-
+        Player player = new Player();
         public void MigrateByFamily()
+            
         {
             Console.WriteLine("You want to immigrate by family? Ok, do you have a spouse or parent who is /n" +
                 "a US citizen or Lawful Permanent Resident? Y or N?");
             var answer = Console.ReadLine();
-            if (answer == "1")
+            if (answer == "N")
             {
-
+                Console.WriteLine("Sorry, you lost! You can't immigrate this way. Want to try another way?");
+                GameMenu();
             }
+            else if (answer == "Y");
+            {
+                Console.WriteLine("Great, maybe you have a chance to immigrate through your spouse or parent. /n" +
+                    "Is your relative a US citizen(USC) or Lawful Permanent Resident(LPR)? Type USC or LPR.");
+                    var answer1 = Console.ReadLine();
+                if (answer == "USC" && player.Age > 21 && (player.countryOfOrigin == CountryOfOrigin.Mexico || player.countryOfOrigin == CountryOfOrigin.Phillipines))
+                {
+                    Console.WriteLine("Congratulations! You can get your green card after about 10-15 years of processing time. Don't plan the party too early. Want to play again?");
+                    GameMenu();
+                }
+                else if (answer == "USC" && player.Age > 21 && (player.countryOfOrigin != CountryOfOrigin.Mexico || player.countryOfOrigin == CountryOfOrigin.Phillipines))
+                {
+                    Console.WriteLine("You can get your green card after about 3-4 years of processing time through your parent. If you’re married to a USC citizen, you might get your green card in as little as 90 days…or it might take a couple of years of processing time. Want to play again ?");
+                }
+
+                else if (answer == "USC" && player.Age < 21) ;
+                    {
+                        Console.WriteLine("This is one of the quickest ways to get a green card! Your processing time will probably take three months to; 1.5 years!");
+                    }
+                }
+
+                
+            }
+            //else 
+            
+                //Console.WriteLine("You must choose Y or N.");
         }
 
-            //else Console.WriteLine("You must choose Y or N.");
+           
 
         public void MigrateBySkill()
         {
