@@ -14,6 +14,10 @@ namespace Immigration.Data
 
         public DateTime DateOfBirth { get; set; }
 
+        public MaritalStatus MaritalStatus { get; set; }
 
+        public int Age { get; set; }
+
+        public bool IsMinor { get; set; }
     }
 }
