@@ -1,0 +1,7 @@
+C:\ElevenFiftyProjects\Gold Badge\Pair Programming Challenge\migration\Immigration.UI\bin\Debug\Immigration.UI.exe.config
+C:\ElevenFiftyProjects\Gold Badge\Pair Programming Challenge\migration\Immigration.UI\bin\Debug\Immigration.UI.exe
+C:\ElevenFiftyProjects\Gold Badge\Pair Programming Challenge\migration\Immigration.UI\bin\Debug\Immigration.UI.pdb
+C:\ElevenFiftyProjects\Gold Badge\Pair Programming Challenge\migration\Immigration.UI\obj\Debug\Immigration.UI.csprojAssemblyReference.cache
+C:\ElevenFiftyProjects\Gold Badge\Pair Programming Challenge\migration\Immigration.UI\obj\Debug\Immigration.UI.csproj.CoreCompileInputs.cache
+C:\ElevenFiftyProjects\Gold Badge\Pair Programming Challenge\migration\Immigration.UI\obj\Debug\Immigration.UI.exe
+C:\ElevenFiftyProjects\Gold Badge\Pair Programming Challenge\migration\Immigration.UI\obj\Debug\Immigration.UI.pdb
