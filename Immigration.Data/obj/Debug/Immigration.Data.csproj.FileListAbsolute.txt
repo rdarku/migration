@@ -1,0 +1,6 @@
+C:\Users\rdark\source\repos\Immigration\Immigration.Data\bin\Debug\Immigration.Data.dll
+C:\Users\rdark\source\repos\Immigration\Immigration.Data\bin\Debug\Immigration.Data.pdb
+C:\Users\rdark\source\repos\Immigration\Immigration.Data\obj\Debug\Immigration.Data.csprojAssemblyReference.cache
+C:\Users\rdark\source\repos\Immigration\Immigration.Data\obj\Debug\Immigration.Data.csproj.CoreCompileInputs.cache
+C:\Users\rdark\source\repos\Immigration\Immigration.Data\obj\Debug\Immigration.Data.dll
+C:\Users\rdark\source\repos\Immigration\Immigration.Data\obj\Debug\Immigration.Data.pdb
