@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Immigration.Data
 {
-    public class Class1
+    public enum MaritalStatus
     {
+        Married,
+        Single,
+        Divorced
     }
 }
