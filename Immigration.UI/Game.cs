@@ -98,11 +98,11 @@ namespace Immigration.UI
             var answer = Console.ReadLine();
             if (answer == "1")
             {
-                Console.WriteLine("You chose path One");
+                MigrateByFamily();
             }
             else if (answer == "2")
             {
-                Console.WriteLine("Check back for thi exciting new feature");
+                Console.WriteLine("Check back for this exciting new feature");
                 GameMenu();
             }
             else if (answer == "3")
@@ -118,8 +118,12 @@ namespace Immigration.UI
 
         public void MigrateByFamily()
         {
-
+            Console.WriteLine("You want to immigrate by family? Ok, do you have a spouse or parent who is /n" +
+                "a US citizen or Lawful Permanent Resident? Y or N?");
+            //var answer == Console.ReadLine();
         }
+
+            //else Console.WriteLine("You must choose Y or N.");
 
         public void MigrateBySkill()
         {
