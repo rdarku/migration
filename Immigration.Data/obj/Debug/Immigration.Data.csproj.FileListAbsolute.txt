@@ -4,3 +4,9 @@ C:\Users\rdark\source\repos\Immigration\Immigration.Data\obj\Debug\Immigration.D
 C:\Users\rdark\source\repos\Immigration\Immigration.Data\obj\Debug\Immigration.Data.csproj.CoreCompileInputs.cache
 C:\Users\rdark\source\repos\Immigration\Immigration.Data\obj\Debug\Immigration.Data.dll
 C:\Users\rdark\source\repos\Immigration\Immigration.Data\obj\Debug\Immigration.Data.pdb
+C:\Users\lab88\Source\Repos\migration\Immigration.Data\bin\Debug\Immigration.Data.dll
+C:\Users\lab88\Source\Repos\migration\Immigration.Data\bin\Debug\Immigration.Data.pdb
+C:\Users\lab88\Source\Repos\migration\Immigration.Data\obj\Debug\Immigration.Data.csprojAssemblyReference.cache
+C:\Users\lab88\Source\Repos\migration\Immigration.Data\obj\Debug\Immigration.Data.csproj.CoreCompileInputs.cache
+C:\Users\lab88\Source\Repos\migration\Immigration.Data\obj\Debug\Immigration.Data.dll
+C:\Users\lab88\Source\Repos\migration\Immigration.Data\obj\Debug\Immigration.Data.pdb

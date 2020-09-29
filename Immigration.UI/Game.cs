@@ -41,7 +41,7 @@ namespace Immigration.UI
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine(titleText);
             Console.ResetColor();
-        }        
+        }
 
         public void GameMenu()
         {
@@ -136,7 +136,7 @@ namespace Immigration.UI
         }
         Player player = new Player();
         public void MigrateByFamily()
-            
+
         {
             Console.WriteLine("You want to immigrate by family? Ok, do you have a spouse or parent who is /n" +
                 "a US citizen or Lawful Permanent Resident? Y or N?");
@@ -146,11 +146,11 @@ namespace Immigration.UI
                 Console.WriteLine("Sorry, you lost! You can't immigrate this way. Want to try another way?");
                 GameMenu();
             }
-            else if (answer == "Y");
+            else if (answer == "Y")
             {
                 Console.WriteLine("Great, maybe you have a chance to immigrate through your spouse or parent. /n" +
                     "Is your relative a US citizen(USC) or Lawful Permanent Resident(LPR)? Type USC or LPR.");
-                    var answer1 = Console.ReadLine();
+                Console.ReadLine();
                 if (answer == "USC" && player.Age > 21 && (player.countryOfOrigin == CountryOfOrigin.Mexico || player.countryOfOrigin == CountryOfOrigin.Phillipines))
                 {
                     Console.WriteLine("Congratulations! You can get your green card after about 10-15 years of processing time. Don't plan the party too early. Want to play again?");
@@ -158,24 +158,23 @@ namespace Immigration.UI
                 }
                 else if (answer == "USC" && player.Age > 21 && (player.countryOfOrigin != CountryOfOrigin.Mexico || player.countryOfOrigin == CountryOfOrigin.Phillipines))
                 {
-                    Console.WriteLine("You can get your green card after about 3-4 years of processing time through your parent. If you’re married to a USC citizen, you might get your green card in as little as 90 days…or it might take a couple of years of processing time. Want to play again ?");
-                }
+                    Console.WriteLine("You can get your green card after about 3-4 years of processing time through your parent. If you’re married to a USC citizen, you might get your green card in as little as 90 days…or it might take a couple of years of processing time. Want to play again?");
+                    GameMenu();
 
-                else if (answer == "USC" && player.Age < 21) ;
-                    {
-                        Console.WriteLine("This is one of the quickest ways to get a green card! Your processing time will probably take three months to; 1.5 years!");
-                    }
                 }
+                else if (answer == "USC" && player.Age < 21)
+                {
+                    Console.WriteLine("This is one of the quickest ways to get a green card! Your processing time will probably take three months to; 1.5 years! Want to play again?");
+                    GameMenu();
+                }
+                else 
 
-                
+                Console.WriteLine("You must choose Y or N.");
             }
-            //else 
-            
-                //Console.WriteLine("You must choose Y or N.");
+
+
         }
-
-           
-
+      
         public void MigrateBySkill()
         {
 
@@ -186,7 +185,7 @@ namespace Immigration.UI
             int luck = 67;
             Random karma = new Random();
 
-            if(karma.Next(100) == luck)
+            if (karma.Next(100) == luck)
             {
                 Console.WriteLine("Congratulations!!");
             }
@@ -199,4 +198,10 @@ namespace Immigration.UI
             Console.ReadKey();
         }
     }
-}
+
+
+
+
+    
+    }
+

@@ -15,3 +15,13 @@ C:\Users\rdark\source\repos\Immigration\Immigration.UI\obj\Debug\Immigration.UI.
 C:\Users\rdark\source\repos\Immigration\Immigration.UI\obj\Debug\Immigration.UI.csproj.CopyComplete
 C:\Users\rdark\source\repos\Immigration\Immigration.UI\obj\Debug\Immigration.UI.exe
 C:\Users\rdark\source\repos\Immigration\Immigration.UI\obj\Debug\Immigration.UI.pdb
+C:\Users\lab88\Source\Repos\migration\Immigration.UI\obj\Debug\Immigration.UI.csprojAssemblyReference.cache
+C:\Users\lab88\Source\Repos\migration\Immigration.UI\obj\Debug\Immigration.UI.csproj.CoreCompileInputs.cache
+C:\Users\lab88\Source\Repos\migration\Immigration.UI\obj\Debug\Immigration.UI.exe
+C:\Users\lab88\Source\Repos\migration\Immigration.UI\obj\Debug\Immigration.UI.pdb
+C:\Users\lab88\Source\Repos\migration\Immigration.UI\bin\Debug\Immigration.UI.exe.config
+C:\Users\lab88\Source\Repos\migration\Immigration.UI\bin\Debug\Immigration.UI.exe
+C:\Users\lab88\Source\Repos\migration\Immigration.UI\bin\Debug\Immigration.UI.pdb
+C:\Users\lab88\Source\Repos\migration\Immigration.UI\bin\Debug\Immigration.Data.dll
+C:\Users\lab88\Source\Repos\migration\Immigration.UI\bin\Debug\Immigration.Data.pdb
+C:\Users\lab88\Source\Repos\migration\Immigration.UI\obj\Debug\Immigration.UI.csproj.CopyComplete
