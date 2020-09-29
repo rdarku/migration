@@ -143,8 +143,8 @@ namespace Immigration.UI
             }
             else
             {
-                Console.WriteLine("You need to chose 1, 2 or 3");
-                GameMenu();
+                Console.WriteLine("You need to choose 1, 2 or 3");
+                PresentOpportunities();
             }
         }
 
