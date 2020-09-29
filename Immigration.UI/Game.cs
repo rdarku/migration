@@ -94,9 +94,11 @@ namespace Immigration.UI
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.DarkRed;
                 Console.WriteLine("You must type a number, 1 or 2. \n" +
                     "Press any key to try again.");
                 Console.ReadKey();
+                Console.ResetColor();
                 GetPlayerProperties();
             }
 
@@ -129,7 +131,9 @@ namespace Immigration.UI
             }
             else
             {
-                Console.WriteLine("You need to choose 1, 2 or 3");
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine("You can only choose 1, 2 or 3") ;
+                Console.ResetColor();
                 PresentOpportunities();
             }
         }
@@ -141,6 +145,7 @@ namespace Immigration.UI
             {
                 Console.WriteLine("Sorry, you lost! You can't immigrate this way. Want to try another way? Hit any key to play again.");
                 Console.ReadKey();
+                Console.ResetColor();
                 GameMenu();
             }
             else if (answer.ToLower() == "y")
@@ -149,7 +154,9 @@ namespace Immigration.UI
             }
             else
             {
-                Console.WriteLine("You need to choose y or n.");
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine("You can only choose y or n.");
+                Console.ResetColor();
                 MigrateByFamily();
             }
         }
@@ -207,15 +214,19 @@ namespace Immigration.UI
                 }
                 else
                 {
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
                     Console.WriteLine($"You must enter a year between 1900 and {DateTime.Now.Year}\nPlease press any key to continue...");
                     Console.ReadKey();
+                    Console.ResetColor();
                     return GetDOBYear();
                 }
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.DarkRed;
                 Console.WriteLine($"You must enter a year between 1900 and {DateTime.Now.Year}\nPlease press any key to continue... ");
                 Console.ReadKey();
+                Console.ResetColor();
                 return GetDOBYear();
             }
         }
@@ -232,15 +243,19 @@ namespace Immigration.UI
                 }
                 else
                 {
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
                     Console.WriteLine("You must enter a Month number between 1 and 12\nPlease press any key to continue...");
                     Console.ReadKey();
+                    Console.ResetColor();
                     return GetDOBMonth();
                 }
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.DarkRed;
                 Console.WriteLine("You must enter a Month number between 1 and 12\nPlease press any key to continue...");
                 Console.ReadKey();
+                Console.ResetColor();
                 return GetDOBMonth();
             }
         }
@@ -257,15 +272,19 @@ namespace Immigration.UI
                 }
                 else
                 {
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
                     Console.WriteLine("You must enter a Day number between 1 and 31\nPlease press any key to continue...");
                     Console.ReadKey();
+                    Console.ResetColor();
                     return GetDOBDay();
                 }
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.DarkRed;
                 Console.WriteLine("You must enter a Day number between 1 and 31\nPlease press any key to continue...");
                 Console.ReadKey();
+                Console.ResetColor();
                 return GetDOBDay();
             }
         }
@@ -310,13 +329,18 @@ namespace Immigration.UI
                         _gamePlayer.countryOfOrigin = CountryOfOrigin.Other;
                         break;
                     default:
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
                         Console.WriteLine("You can only choose from 1, 2, 3, or 4.");
+                        Console.ResetColor();
+                        SetPlayerCOO();
                         break;
                 }
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.DarkRed;
                 Console.WriteLine("You did not type an integer.");
+                Console.ResetColor();
                 SetPlayerCOO();
             }
 
@@ -376,7 +400,9 @@ namespace Immigration.UI
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.DarkRed;
                 Console.WriteLine("You must enter a valid answer.");
+                Console.ResetColor();
                 UscLprMethod();
             }
 
