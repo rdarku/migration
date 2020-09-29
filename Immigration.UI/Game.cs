@@ -1,5 +1,6 @@
 ﻿using Immigration.Data;
 using System;
+using System.Threading;
 
 namespace Immigration.UI
 {
@@ -77,11 +78,18 @@ namespace Immigration.UI
                     _gamePlayer.MaritalStatus = MaritalStatus.Single;
                     break;
                 default:
-                    Console.WriteLine("Hey! you did not give us the right answer.\n Do you want to change the answwer?\n");
-                    GameMenu();
+                    Console.WriteLine("Hey! You did not give us the right answer.\n Do you want to change the answwer?\n");
+                    var retry = Console.ReadLine();
+                    if(retry.ToLower() =="y")
+                    {
+                        GetPlayerProperties();
+                    }
+                    else
+                    {
+                        GameMenu();
+                    }
                     break;
             }
-
 
             Console.WriteLine("What is your character's Date of Birth? \nEnter the Year\n");
             int dobYear = Convert.ToInt32(Console.ReadLine());
@@ -91,7 +99,6 @@ namespace Immigration.UI
             Console.WriteLine("Enter the day");
             int dobDay = Convert.ToInt32(Console.ReadLine());
             _gamePlayer.DateOfBirth = new DateTime(dobYear, dobMonth, dobDay);
-
 
             Console.WriteLine("What is your character's Country of Origin? 1) India 2) Mexico 3) Phillipines 4) Other");
             string coo = Console.ReadLine();
@@ -159,54 +166,47 @@ namespace Immigration.UI
                 if (answer2.ToLower() == "usc" && _gamePlayer.IsMinor && (_gamePlayer.countryOfOrigin == CountryOfOrigin.Mexico || _gamePlayer.countryOfOrigin == CountryOfOrigin.Phillipines))
                 {
                     Console.WriteLine("Congratulations! You can get your green card after about 10-15 years of processing time. " +
-                        "Don't plan the party too early. Want to play again?");
-                    Console.ReadKey();
-                    GameMenu();
+                        "Don't plan the party too early.");
+                    PlayAgain();
                 }
                 else if (answer2.ToLower() == "usc" && _gamePlayer.Age > 21 && (_gamePlayer.countryOfOrigin != CountryOfOrigin.Mexico || _gamePlayer.countryOfOrigin == CountryOfOrigin.Phillipines))
                 {
                     Console.WriteLine("You can get your green card after about 3-4 years of processing time through your parent. " +
                         "If you’re married to a USC citizen, you might get your green card in as little as 90 days" +
-                        "…or it might take a couple of years of processing time. Want to play again?");
-                    Console.ReadKey();
-                    GameMenu();
+                        "…or it might take a couple of years of processing time.");
+                    PlayAgain();
                 }
                 else if (answer2.ToLower() == "usc" && _gamePlayer.IsMinor)
                 {
                     Console.WriteLine("This is one of the quickest ways to get a green card! Your processing time will probably take three months to; 1.5 years! " +
                         "Want to play again?");
-                    Console.ReadKey();
-                    GameMenu();
+                    PlayAgain();
                 }
                 else if (answer2.ToLower() == "lpr" && _gamePlayer.IsMinor && _gamePlayer.MaritalStatus == MaritalStatus.Single)
                 {
                     Console.WriteLine("Single children under age 21 can apply! Your processing time could be 1-4 years, " +
                         "but be careful you don't have any inadmissibility issues, and don't get married unless your parent becomes a US citizen first! " +
-                        "Play the inadmissiblity game later, coming soon, DLC only $500! Want to play again?");
-                    Console.ReadKey();
-                    GameMenu();
+                        "Play the inadmissiblity game later, coming soon, DLC only $500!");
+                    PlayAgain();
                 }
                 else if (answer2.ToLower() == "lpr" && _gamePlayer.IsMinor && _gamePlayer.MaritalStatus == MaritalStatus.Single && (_gamePlayer.countryOfOrigin == CountryOfOrigin.Mexico || _gamePlayer.countryOfOrigin == CountryOfOrigin.Phillipines))
                 {
                     Console.WriteLine("Single children over age 21 can apply! Your parent can petition for you. " +
-                        "Your processing time could be 10-15 years or more. Want to play again?");
-                    Console.ReadKey();
-                    GameMenu();
+                        "Your processing time could be 10-15 years or more. ");
+                    PlayAgain();
                 }
                 else if (answer2.ToLower() == "lpr" && _gamePlayer.Age > 21 && _gamePlayer.MaritalStatus == MaritalStatus.Single && (_gamePlayer.countryOfOrigin == CountryOfOrigin.India || _gamePlayer.countryOfOrigin == CountryOfOrigin.Other))
                 {
                     Console.WriteLine("Single children over age 21 can apply! Your parent can petition for you. " +
-                        "Your processing time could be 5 years or more. Want to play again?");
-                    Console.ReadKey();
-                    GameMenu();
+                        "Your processing time could be 5 years or more.");
+                    PlayAgain();
                 }
                 else if (answer2.ToLower() == "lpr" && _gamePlayer.MaritalStatus == MaritalStatus.Married)
                 {
                     Console.WriteLine("Your LPR spouse can petition for you to qualify this way. Your parent can't petition for you. " +
                         "Your processing time could be 1-15 years, but be careful you don't have any inadmissibility issues! " +
-                        "Play the inadmissiblity game later, coming soon, DLC only $500! Want to play again?");
-                    Console.ReadKey();
-                    GameMenu();
+                        "Play the inadmissiblity game later, coming soon, DLC only $500! ");
+                    PlayAgain();
                 }
                 else
                     Console.WriteLine("You must choose Y or N.");
@@ -218,9 +218,8 @@ namespace Immigration.UI
         public void MigrateBySkill()
         {
             Console.WriteLine("You can immigrate this way in real life, but not in this game! " +
-                "Check back soon for an exciting expansion pack, only $500  for extra downloadable content! Play again?");
-            Console.ReadLine();
-            GameMenu();
+                "Check back soon for an exciting expansion pack, only $500  for extra downloadable content!");
+            PlayAgain();
         }
 
         public void RollTheDice()
@@ -234,11 +233,28 @@ namespace Immigration.UI
             }
             else
             {
-                Console.WriteLine("Sorry!! You lost the green card lottery. Play again?");
-                GameMenu();
+                Console.WriteLine("Sorry!! You lost the green card lottery."); 
             }
 
-            Console.ReadKey();
+            PlayAgain();
+
+        }
+
+        public void PlayAgain()
+        {
+            Console.WriteLine("\nWant to play again? Y or N");
+            var answer = Console.ReadLine();
+            if (answer == "Y")
+                GameMenu();
+            else SayGoodBye(); 
+        }
+
+        public void SayGoodBye()
+        {
+            GameStart();
+            Console.WriteLine("Thank you for playing!\n" +
+                "Please come back soon.\n");
+            Thread.Sleep(3000);
 
         }
     }
