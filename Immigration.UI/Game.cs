@@ -24,18 +24,25 @@ namespace Immigration.UI
         private void GameStart()
         {
             string titleText = @"
-  ________                              _________                  .___   ________                       
- /  _____/______   ____   ____   ____   \_   ___ \_____ _______  __| _/  /  _____/_____    _____   ____  
-/   \  __\_  __ \_/ __ \_/ __ \ /    \  /    \  \/\__  \\_  __ \/ __ |  /   \  ___\__  \  /     \_/ __ \ 
-\    \_\  \  | \/\  ___/\  ___/|   |  \ \     \____/ __ \|  | \/ /_/ |  \    \_\  \/ __ \|  Y Y  \  ___/ 
- \______  /__|    \___  >\___  >___|  /  \______  (____  /__|  \____ |   \______  (____  /__|_|  /\___  >
-        \/            \/     \/     \/          \/     \/           \/          \/     \/      \/     \/ 
-                                                                                                         
-                                                                                                         
-                                                                                                         
-                                                                                                         
-                                                                                                         
-                                                                                                         
+                                                                                                                     
+                                                                                                                     
+  ______   ______   ______   ______   ______   ______   ______   ______   ______   ______   ______   ______   ______ 
+ /_____/  /_____/  /_____/  /_____/  /_____/  /_____/  /_____/  /_____/  /_____/  /_____/  /_____/  /_____/  /_____/ 
+                                                                                                                     
+                                                                                                                     
+      ________                              _________                  .___   ________                               
+     /  _____/______   ____   ____   ____   \_   ___ \_____ _______  __| _/  /  _____/_____    _____   ____          
+    /   \  __\_  __ \_/ __ \_/ __ \ /    \  /    \  \/\__  \\_  __ \/ __ |  /   \  ___\__  \  /     \_/ __ \         
+    \    \_\  \  | \/\  ___/\  ___/|   |  \ \     \____/ __ \|  | \/ /_/ |  \    \_\  \/ __ \|  Y Y  \  ___/         
+     \______  /__|    \___  >\___  >___|  /  \______  (____  /__|  \____ |   \______  (____  /__|_|  /\___  >        
+            \/            \/     \/     \/          \/     \/           \/          \/     \/      \/     \/         
+                                                                                                                     
+                                                                                                                     
+  ______   ______   ______   ______   ______   ______   ______   ______   ______   ______   ______   ______   ______ 
+ /_____/  /_____/  /_____/  /_____/  /_____/  /_____/  /_____/  /_____/  /_____/  /_____/  /_____/  /_____/  /_____/ 
+                                                                                                                     
+                                                                                                                     
+                                                                                                                     
 ";
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Green;
@@ -133,9 +140,8 @@ namespace Immigration.UI
                 GameMenu();
             }
         }
-        Player player = new Player();
-        public void MigrateByFamily()
 
+        public void MigrateByFamily()
         {
             Console.WriteLine("You want to immigrate by family? Ok, do you have a spouse or parent who is a US citizen or Lawful Permanent Resident? Y or N?");
             var answer = Console.ReadLine();
@@ -147,52 +153,63 @@ namespace Immigration.UI
             }
             else if (answer.ToLower() == "y")
             {
-                Console.WriteLine("Great, maybe you have a chance to immigrate through your spouse or parent. Is your relative a US citizen(USC) or Lawful Permanent Resident(LPR)? Type USC or LPR.");
+                Console.WriteLine("Great, maybe you have a chance to immigrate through your spouse or parent. " +
+                    "Is your relative a US citizen(USC) or Lawful Permanent Resident(LPR)? Type USC or LPR.");
                 var answer2 = Console.ReadLine();
-                if (answer2.ToLower() == "usc" && player.Age > 21 && (player.countryOfOrigin == CountryOfOrigin.Mexico || player.countryOfOrigin == CountryOfOrigin.Phillipines))
+                if (answer2.ToLower() == "usc" && _gamePlayer.IsMinor && (_gamePlayer.countryOfOrigin == CountryOfOrigin.Mexico || _gamePlayer.countryOfOrigin == CountryOfOrigin.Phillipines))
                 {
-                    Console.WriteLine("Congratulations! You can get your green card after about 10-15 years of processing time. Don't plan the party too early. Want to play again?");
+                    Console.WriteLine("Congratulations! You can get your green card after about 10-15 years of processing time. " +
+                        "Don't plan the party too early. Want to play again?");
                     Console.ReadKey();
                     GameMenu();
                 }
-                else if (answer2.ToLower() == "usc" && player.Age > 21 && (player.countryOfOrigin != CountryOfOrigin.Mexico || player.countryOfOrigin == CountryOfOrigin.Phillipines))
+                else if (answer2.ToLower() == "usc" && _gamePlayer.Age > 21 && (_gamePlayer.countryOfOrigin != CountryOfOrigin.Mexico || _gamePlayer.countryOfOrigin == CountryOfOrigin.Phillipines))
                 {
-                    Console.WriteLine("You can get your green card after about 3-4 years of processing time through your parent. If you’re married to a USC citizen, you might get your green card in as little as 90 days…or it might take a couple of years of processing time. Want to play again?");
+                    Console.WriteLine("You can get your green card after about 3-4 years of processing time through your parent. " +
+                        "If you’re married to a USC citizen, you might get your green card in as little as 90 days" +
+                        "…or it might take a couple of years of processing time. Want to play again?");
                     Console.ReadKey();
                     GameMenu();
                 }
-                else if (answer2.ToLower() == "usc" && player.Age < 21)
+                else if (answer2.ToLower() == "usc" && _gamePlayer.IsMinor)
                 {
-                    Console.WriteLine("This is one of the quickest ways to get a green card! Your processing time will probably take three months to; 1.5 years! Want to play again?");
+                    Console.WriteLine("This is one of the quickest ways to get a green card! Your processing time will probably take three months to; 1.5 years! " +
+                        "Want to play again?");
                     Console.ReadKey();
                     GameMenu();
                 }
-                else if (answer2.ToLower() == "lpr" && player.Age < 21 && player.MaritalStatus == MaritalStatus.Single)
+                else if (answer2.ToLower() == "lpr" && _gamePlayer.IsMinor && _gamePlayer.MaritalStatus == MaritalStatus.Single)
                 {
-                    Console.WriteLine("Single children under age 21 can apply! Your processing time could be 1-4 years, but be careful you don't have any inadmissibility issues, and don't get married unless your parent becomes a US citizen first! Play the inadmissiblity game later, coming soon, DLC only $500! Want to play again?");
+                    Console.WriteLine("Single children under age 21 can apply! Your processing time could be 1-4 years, " +
+                        "but be careful you don't have any inadmissibility issues, and don't get married unless your parent becomes a US citizen first! " +
+                        "Play the inadmissiblity game later, coming soon, DLC only $500! Want to play again?");
                     Console.ReadKey();
                     GameMenu();
                 }
-                else if (answer2.ToLower() == "lpr" && player.Age > 21 && player.MaritalStatus == MaritalStatus.Single && (player.countryOfOrigin == CountryOfOrigin.Mexico || player.countryOfOrigin == CountryOfOrigin.Phillipines))
+                else if (answer2.ToLower() == "lpr" && _gamePlayer.IsMinor && _gamePlayer.MaritalStatus == MaritalStatus.Single && (_gamePlayer.countryOfOrigin == CountryOfOrigin.Mexico || _gamePlayer.countryOfOrigin == CountryOfOrigin.Phillipines))
                 {
-                    Console.WriteLine("Single children over age 21 can apply! Your parent can petition for you. Your processing time could be 10-15 years or more. Want to play again?");
+                    Console.WriteLine("Single children over age 21 can apply! Your parent can petition for you. " +
+                        "Your processing time could be 10-15 years or more. Want to play again?");
                     Console.ReadKey();
                     GameMenu();
                 }
-                else if (answer2.ToLower() == "lpr" && player.Age > 21 && player.MaritalStatus == MaritalStatus.Single && (player.countryOfOrigin == CountryOfOrigin.India || player.countryOfOrigin == CountryOfOrigin.Other))
+                else if (answer2.ToLower() == "lpr" && _gamePlayer.Age > 21 && _gamePlayer.MaritalStatus == MaritalStatus.Single && (_gamePlayer.countryOfOrigin == CountryOfOrigin.India || _gamePlayer.countryOfOrigin == CountryOfOrigin.Other))
                 {
-                    Console.WriteLine("Single children over age 21 can apply! Your parent can petition for you. Your processing time could be 5 years or more. Want to play again?");
+                    Console.WriteLine("Single children over age 21 can apply! Your parent can petition for you. " +
+                        "Your processing time could be 5 years or more. Want to play again?");
                     Console.ReadKey();
                     GameMenu();
                 }
-                else if (answer2.ToLower() == "lpr" && player.MaritalStatus == MaritalStatus.Married)
+                else if (answer2.ToLower() == "lpr" && _gamePlayer.MaritalStatus == MaritalStatus.Married)
                 {
-                    Console.WriteLine("Your LPR spouse can petition for you to qualify this way. Your parent can't petition for you. Your processing time could be 1-15 years, but be careful you don't have any inadmissibility issues! Play the inadmissiblity game later, coming soon, DLC only $500! Want to play again?");
+                    Console.WriteLine("Your LPR spouse can petition for you to qualify this way. Your parent can't petition for you. " +
+                        "Your processing time could be 1-15 years, but be careful you don't have any inadmissibility issues! " +
+                        "Play the inadmissiblity game later, coming soon, DLC only $500! Want to play again?");
                     Console.ReadKey();
                     GameMenu();
                 }
-                else 
-                Console.WriteLine("You must choose Y or N.");
+                else
+                    Console.WriteLine("You must choose Y or N.");
             }
 
 
@@ -200,7 +217,8 @@ namespace Immigration.UI
 
         public void MigrateBySkill()
         {
-            Console.WriteLine("You can immigrate this way in real life, but not in this game! Check back soon for an exciting expansion pack, only $500  for extra downloadable content! Play again?");
+            Console.WriteLine("You can immigrate this way in real life, but not in this game! " +
+                "Check back soon for an exciting expansion pack, only $500  for extra downloadable content! Play again?");
             Console.ReadLine();
             GameMenu();
         }
@@ -224,10 +242,5 @@ namespace Immigration.UI
 
         }
     }
-
-
-
-
-    
-    }
+}
 
