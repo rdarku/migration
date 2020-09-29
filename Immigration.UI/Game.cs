@@ -80,7 +80,7 @@ namespace Immigration.UI
                 default:
                     Console.WriteLine("That is not a valid answer. You must enter 1 for Married or 2 for Single. \n Do you want to try again?\n");
                     var retry = Console.ReadLine();
-                    if(retry.ToLower() =="y")
+                    if (retry.ToLower() == "y")
                     {
                         GetPlayerProperties();
                     }
@@ -93,34 +93,10 @@ namespace Immigration.UI
 
             SetPlayerDOB();
 
-            Console.WriteLine("What is your character's country of origin? 1) India 2) Mexico 3) Phillipines 4) Other? \n Choose 1, 2, 3, or 4 below.");
-            string input = Console.ReadLine();
-            if (int.TryParse(input,out int coo))
-            {
+            SetPlayerCOO();
 
-                switch (coo)
-                {
-                    case 1:
-                        _gamePlayer.countryOfOrigin = CountryOfOrigin.India;
-                        break;
-                    case 2:
-                        _gamePlayer.countryOfOrigin = CountryOfOrigin.Mexico;
-                        break;
-                    case 3:
-                        _gamePlayer.countryOfOrigin = CountryOfOrigin.Phillipines;
-                        break;
-                    case 4:
-                        _gamePlayer.countryOfOrigin = CountryOfOrigin.Other;
-                        break;
-                    default:
-                        Console.WriteLine("You can only choose from 1, 2, 3, or 4.");
-                        break;
-                }
-            }
-            else Console.WriteLine ("You did not type an integer.");
 
         }
-
         public void PresentOpportunities()
         {
             Console.WriteLine("Do you want to try to immigrate by family, skill, or some other way?\n" +
@@ -345,6 +321,41 @@ namespace Immigration.UI
             // Set player's DOB 
             _gamePlayer.DateOfBirth = new DateTime(dobYear, dobMonth, dobDay);
         }
+        
+        public void SetPlayerCOO() 
+            {
+
+                Console.WriteLine("What is your character's country of origin? 1) India 2) Mexico 3) Phillipines 4) Other? \n Choose 1, 2, 3, or 4 below.");
+                string input = Console.ReadLine();
+                if (int.TryParse(input, out int coo))
+                {
+
+                    switch (coo)
+                    {
+                        case 1:
+                            _gamePlayer.countryOfOrigin = CountryOfOrigin.India;
+                            break;
+                        case 2:
+                            _gamePlayer.countryOfOrigin = CountryOfOrigin.Mexico;
+                            break;
+                        case 3:
+                            _gamePlayer.countryOfOrigin = CountryOfOrigin.Phillipines;
+                            break;
+                        case 4:
+                            _gamePlayer.countryOfOrigin = CountryOfOrigin.Other;
+                            break;
+                        default:
+                            Console.WriteLine("You can only choose from 1, 2, 3, or 4.");
+                            break;
+                    }
+                }
+                else Console.WriteLine("You did not type an integer.");
+                SetPlayerCOO();
+            }
+
+        }
+
+
     }
 }
 
