@@ -342,7 +342,6 @@ namespace Immigration.UI
             }
 
 
-
         }
         public void UscLprMethod()
 
@@ -383,7 +382,7 @@ namespace Immigration.UI
                 Console.ResetColor();
                 PlayAgain();
             }
-            else if (answer2.ToLower() == "lpr" && _gamePlayer.IsMinor && _gamePlayer.MaritalStatus == MaritalStatus.Single && (_gamePlayer.countryOfOrigin == CountryOfOrigin.Mexico || _gamePlayer.countryOfOrigin == CountryOfOrigin.Phillipines))
+            else if (answer2.ToLower() == "lpr" && !_gamePlayer.IsMinor && _gamePlayer.MaritalStatus == MaritalStatus.Single && (_gamePlayer.countryOfOrigin == CountryOfOrigin.Mexico || _gamePlayer.countryOfOrigin == CountryOfOrigin.Phillipines))
             {
                 Console.WriteLine("Single children over age 21 can apply! Your parent can petition for you. " +
                     "Your processing time could be 10-15 years or more. ");
@@ -435,7 +434,6 @@ namespace Immigration.UI
                                                                                                                      
             ";
             return winnersText;
-            
         }
     }
 }
