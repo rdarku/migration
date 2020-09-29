@@ -91,14 +91,7 @@ namespace Immigration.UI
                     break;
             }
 
-            Console.WriteLine("What is your character's Date of Birth? \nEnter the Year\n");
-            int dobYear = Convert.ToInt32(Console.ReadLine());
-
-            Console.WriteLine("Enter the month");
-            int dobMonth = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Enter the day");
-            int dobDay = Convert.ToInt32(Console.ReadLine());
-            _gamePlayer.DateOfBirth = new DateTime(dobYear, dobMonth, dobDay);
+            SetPlayerDOB();
 
             Console.WriteLine("What is your character's country of origin? 1) India 2) Mexico 3) Phillipines 4) Other? \n Choose 1, 2, 3, or 4 below.");
             string input = Console.ReadLine();
@@ -151,8 +144,8 @@ namespace Immigration.UI
             }
             else
             {
-                Console.WriteLine("You need to chose 1, 2 or 3");
-                GameMenu();
+                Console.WriteLine("You need to choose 1, 2 or 3");
+                PresentOpportunities();
             }
         }
         public void MigrateByFamily()
@@ -247,7 +240,7 @@ namespace Immigration.UI
         {
             Console.WriteLine("\nWant to play again? Y or N");
             var answer = Console.ReadLine();
-            if (answer == "Y")
+            if (answer.ToLower() == "y")
                 GameMenu();
             else SayGoodBye(); 
         }
@@ -257,8 +250,100 @@ namespace Immigration.UI
             GameStart();
             Console.WriteLine("Thank you for playing!\n" +
                 "Please come back soon.\n");
-            Thread.Sleep(3000);
+            Thread.Sleep(5000);
 
+        }
+
+        public int GetDOBYear()
+        {
+            Console.WriteLine("Enter the Year the character was born in:\n");
+            string input = Console.ReadLine();
+            if(int.TryParse(input, out int dobYear))
+            {
+                if (dobYear > 1900 && dobYear <= DateTime.Now.Year)
+                {
+                    return dobYear;
+                }
+                else
+                {
+                    Console.WriteLine($"You must enter a year between 1900 and {DateTime.Now.Year}\nPlease press any key to continue...");
+                    Console.ReadKey();
+                    return GetDOBYear();
+                }
+            }
+            else
+            {
+                Console.WriteLine($"You must enter a year between 1900 and {DateTime.Now.Year}\nPlease press any key to continue... ");
+                Console.ReadKey();
+                return GetDOBYear();
+            }
+        }
+
+        public int GetDOBMonth()
+        {
+            Console.WriteLine("Enter the Month the character was born in:\n");
+            string input = Console.ReadLine();
+            if (int.TryParse(input, out int dobMonth))
+            {
+                if (dobMonth > 0 && dobMonth < 13)
+                {
+                    return dobMonth;
+                }
+                else
+                {
+                    Console.WriteLine("You must enter a Month number between 1 and 12\nPlease press any key to continue...");
+                    Console.ReadKey();
+                    return GetDOBMonth();
+                }
+            }
+            else
+            {
+                Console.WriteLine("You must enter a Month number between 1 and 12\nPlease press any key to continue...");
+                Console.ReadKey();
+                return GetDOBMonth();
+            }
+        }
+
+        public int GetDOBDay()
+        {
+            Console.WriteLine("Enter the Day the character was born on:\n");
+            string input = Console.ReadLine();
+            if (int.TryParse(input, out int dobDay))
+            {
+                if (dobDay > 0 && dobDay < 13)
+                {
+                    return dobDay;
+                }
+                else
+                {
+                    Console.WriteLine("You must enter a Day number between 1 and 31\nPlease press any key to continue...");
+                    Console.ReadKey();
+                    return GetDOBDay();
+                }
+            }
+            else
+            {
+                Console.WriteLine("You must enter a Day number between 1 and 31\nPlease press any key to continue...");
+                Console.ReadKey();
+                return GetDOBDay();
+            }
+        }
+
+        public void SetPlayerDOB()
+        {
+            Console.WriteLine("What is your character's Date of Birth?");
+
+            // GET DOB Year
+            int dobYear = GetDOBYear();
+
+            // Get DOB Month
+            int dobMonth = GetDOBMonth();
+
+            // Get DOB Day
+            int dobDay = GetDOBDay();
+
+            // Set player's DOB 
+            _gamePlayer.DateOfBirth = new DateTime(dobYear, dobMonth, dobDay);
         }
     }
 }
