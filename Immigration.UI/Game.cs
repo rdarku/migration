@@ -66,29 +66,38 @@ namespace Immigration.UI
         public void GetPlayerProperties()
         {
             Console.WriteLine("Hello and welcome to The Green Card Game! Your character wants to get a green card. \n Can you help your character make the right choices to get the green card? \n You get to choose your character's marital status, age, and country of origin. \n The choices you make could affect \n whether your not you win the game! Let's get started -   \n Is your character Married or Single? You can type 1 for Married or 2 for Single. \n 1) Married \n 2) Single");
-            string maritalSatus = Console.ReadLine();
-            var mStatus = Convert.ToInt32(maritalSatus);
-
-            switch (mStatus)
+            string input = Console.ReadLine();
+            if (int.TryParse(input, out int mStatus))
             {
-                case 1:
-                    _gamePlayer.MaritalStatus = MaritalStatus.Married;
-                    break;
-                case 2:
-                    _gamePlayer.MaritalStatus = MaritalStatus.Single;
-                    break;
-                default:
-                    Console.WriteLine("That is not a valid answer. You must enter 1 for Married or 2 for Single. \n Do you want to try again?\n");
-                    var retry = Console.ReadLine();
-                    if (retry.ToLower() == "y")
-                    {
-                        GetPlayerProperties();
-                    }
-                    else
-                    {
-                        GameMenu();
-                    }
-                    break;
+
+                switch (mStatus)
+                {
+                    case 1:
+                        _gamePlayer.MaritalStatus = MaritalStatus.Married;
+                        break;
+                    case 2:
+                        _gamePlayer.MaritalStatus = MaritalStatus.Single;
+                        break;
+                    default:
+                        Console.WriteLine("That is not a valid answer. You must enter 1 for Married or 2 for Single. \n Do you want to try again?\n");
+                        var retry = Console.ReadLine();
+                        if (retry.ToLower() == "y")
+                        {
+                            GetPlayerProperties();
+                        }
+                        else
+                        {
+                            GameMenu();
+                        }
+                        break;
+                }
+            }
+            else
+            {
+                Console.WriteLine("You must type a number, 1 or 2. \n" +
+                    "Press any key to try again.");
+                Console.ReadKey();
+                GetPlayerProperties();
             }
 
             SetPlayerDOB();
