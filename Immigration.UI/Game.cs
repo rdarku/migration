@@ -16,9 +16,7 @@ namespace Immigration.UI
 
         private void GameStart()
         {
-            string titleText = @"
-                                                                                                                     
-                                                                                                                     
+            string titleText = @"                                                                                                                     
   ______   ______   ______   ______   ______   ______   ______   ______   ______   ______   ______   ______   ______ 
  /_____/  /_____/  /_____/  /_____/  /_____/  /_____/  /_____/  /_____/  /_____/  /_____/  /_____/  /_____/  /_____/ 
                                                                                                                      
@@ -33,7 +31,6 @@ namespace Immigration.UI
                                                                                                                      
   ______   ______   ______   ______   ______   ______   ______   ______   ______   ______   ______   ______   ______ 
  /_____/  /_____/  /_____/  /_____/  /_____/  /_____/  /_____/  /_____/  /_____/  /_____/  /_____/  /_____/  /_____/ 
-                                                                                                                     
                                                                                                                      
                                                                                                                      
 ";
@@ -52,56 +49,22 @@ namespace Immigration.UI
             PresentOpportunities();
 
             Console.ReadKey();
-
         }
 
         public void GetPlayerProperties()
         {
-            Console.WriteLine("Hello and welcome to The Green Card Game! Your character wants to get a green card. \n Can you help your character make the right choices to get the green card? \n You get to choose your character's marital status, age, and country of origin. \n The choices you make could affect \n whether your not you win the game! Let's get started -   \n Is your character Married or Single? You can type 1 for Married or 2 for Single. \n 1) Married \n 2) Single");
-            string input = Console.ReadLine();
-            if (int.TryParse(input, out int mStatus))
-            {
+            Console.WriteLine("Hello and welcome to The Green Card Game! Your character wants to get a green card. " +
+                "\n Can you help your character make the right choices to get the green card? " +
+                "\n You get to choose your character's marital status, age, and country of origin. " +
+                "\n The choices you make could affect \n whether your not you win the game! Let's get started -   \n");
 
-                switch (mStatus)
-                {
-                    case 1:
-                        _gamePlayer.MaritalStatus = MaritalStatus.Married;
-                        break;
-                    case 2:
-                        _gamePlayer.MaritalStatus = MaritalStatus.Single;
-                        break;
-                    default:
-                        Console.ForegroundColor = ConsoleColor.DarkRed;
-                        Console.WriteLine("That is not a valid answer. You must enter 1 for Married or 2 for Single. \n Do you want to try again?\n");
-                        var retry = Console.ReadLine();
-                        if (retry.ToLower() == "y")
-                        {
-                            GetPlayerProperties();
-                        }
-                        else
-                        {
-                            GameMenu();
-                        }
-                        Console.ResetColor();
-                        break;
-                }
-            }
-            else
-            {
-                Console.ForegroundColor = ConsoleColor.DarkRed;
-                Console.WriteLine("You must type a number, 1 or 2. \n" +
-                    "Press any key to try again.");
-                Console.ReadKey();
-                Console.ResetColor();
-                GetPlayerProperties();
-            }
+            SetPlayerMaritalStatus();
 
             SetPlayerDOB();
 
             SetPlayerCOO();
-
-
         }
+        
         public void PresentOpportunities()
         {
             Console.WriteLine("Do you want to try to immigrate by family, skill, or some other way?\n" +
@@ -131,6 +94,7 @@ namespace Immigration.UI
                 PresentOpportunities();
             }
         }
+        
         public void MigrateByFamily()
         {
             Console.WriteLine("You want to immigrate by family? Ok, do you have a spouse or parent who is a US citizen or Lawful Permanent Resident? Y or N?");
@@ -171,8 +135,7 @@ namespace Immigration.UI
             {
                 Console.ForegroundColor = ConsoleColor.DarkCyan;
                 Console.WriteLine("Congratulations!! You had a 1 in 100 chance of winning the green card lottery in this game. In real life, it's much less.");
-                Console.WriteLine(WinnersText());
-                Console.ResetColor();
+                WinnersText();
             }
             else
             {
@@ -181,6 +144,7 @@ namespace Immigration.UI
 
             PlayAgain();
         }
+
         public void PlayAgain()
         {
             Console.WriteLine("\nWant to play again? Y or N");
@@ -195,8 +159,7 @@ namespace Immigration.UI
             GameStart();
             Console.WriteLine("Thank you for playing!\n" +
                 "Please come back soon.\n");
-            Thread.Sleep(5000);
-
+            Thread.Sleep(3000);
         }
 
         public int GetDOBYear()
@@ -343,60 +306,99 @@ namespace Immigration.UI
 
 
         }
-        public void UscLprMethod()
 
+        public void SetPlayerMaritalStatus()
+        {
+            Console.WriteLine("\n Is your character Married or Single? You can type 1 for Married or 2 for Single. \n 1) Married \n 2) Single");
+            string input = Console.ReadLine();
+            if (int.TryParse(input, out int mStatus))
+            {
+                switch (mStatus)
+                {
+                    case 1:
+                        _gamePlayer.MaritalStatus = MaritalStatus.Married;
+                        break;
+                    case 2:
+                        _gamePlayer.MaritalStatus = MaritalStatus.Single;
+                        break;
+                    default:
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
+                        Console.WriteLine("That is not a valid answer. You must enter 1 for Married or 2 for Single. \nWant to play again? Y or N\n");
+                        Console.ResetColor();
+                        var retry = Console.ReadLine();
+                        if (retry.ToLower() == "y")
+                        {
+                            SetPlayerMaritalStatus();
+                        }
+                        else
+                        {
+                            GameMenu();
+                        }
+                        break;
+                }
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine("You must type a number, 1 or 2. \nPress any key to try again.");
+                Console.ReadKey();
+                Console.ResetColor();
+                GetPlayerProperties();
+            }
+        }
+
+        public void UscLprMethod()
         {
             Console.WriteLine("Great, maybe you have a chance to immigrate through your spouse or parent. " +
                 "Is your relative a US citizen(USC) or Lawful Permanent Resident(LPR)? Type USC or LPR.");
             var answer2 = Console.ReadLine();
-            if (answer2.ToLower() == "usc" && _gamePlayer.IsMinor && (_gamePlayer.countryOfOrigin == CountryOfOrigin.Mexico || _gamePlayer.countryOfOrigin == CountryOfOrigin.Phillipines))
+            if (answer2.ToLower() == "usc" && !_gamePlayer.IsMinor 
+                && (_gamePlayer.countryOfOrigin == CountryOfOrigin.Mexico || _gamePlayer.countryOfOrigin == CountryOfOrigin.Phillipines))
             {
                 Console.WriteLine("Congratulations! You can get your green card after about 10-15 years of processing time. " +
                     "Don't plan the party too early.");
-                Console.WriteLine(WinnersText());
-                Console.ResetColor();
-                PlayAgain();
+                
+                WinnersText();
             }
-            else if (answer2.ToLower() == "usc" && _gamePlayer.Age > 21 && (_gamePlayer.countryOfOrigin != CountryOfOrigin.Mexico || _gamePlayer.countryOfOrigin == CountryOfOrigin.Phillipines))
+            else if (answer2.ToLower() == "usc" && !_gamePlayer.IsMinor 
+                && (_gamePlayer.countryOfOrigin != CountryOfOrigin.Mexico || _gamePlayer.countryOfOrigin == CountryOfOrigin.Phillipines))
             {
                 Console.WriteLine("You can get your green card after about 3-4 years of processing time through your parent. " +
                     "If you’re married to a USC citizen, you might get your green card in as little as 90 days" +
                     "…or it might take a couple of years of processing time.");
-                Console.WriteLine(WinnersText());
-                PlayAgain();
+
+                WinnersText();
             }
             else if (answer2.ToLower() == "usc" && _gamePlayer.IsMinor)
             {
                 Console.WriteLine("This is one of the quickest ways to get a green card! Your processing time will probably take three months to; 1.5 years! " +
                     "Want to play again?");
-                Console.WriteLine(WinnersText());
-                Console.ResetColor();
-                PlayAgain();
+
+                WinnersText();
             }
             else if (answer2.ToLower() == "lpr" && _gamePlayer.IsMinor && _gamePlayer.MaritalStatus == MaritalStatus.Single)
             {
                 Console.WriteLine("Single children under age 21 can apply! Your processing time could be 1-4 years, " +
                     "but be careful you don't have any inadmissibility issues, and don't get married unless your parent becomes a US citizen first! " +
                     "Play the inadmissiblity game later, coming soon, DLC only $500!");
-                Console.WriteLine(WinnersText());
-                Console.ResetColor();
-                PlayAgain();
+                
+                WinnersText();
             }
-            else if (answer2.ToLower() == "lpr" && !_gamePlayer.IsMinor && _gamePlayer.MaritalStatus == MaritalStatus.Single && (_gamePlayer.countryOfOrigin == CountryOfOrigin.Mexico || _gamePlayer.countryOfOrigin == CountryOfOrigin.Phillipines))
+            else if (answer2.ToLower() == "lpr" && !_gamePlayer.IsMinor && _gamePlayer.MaritalStatus == MaritalStatus.Single 
+                && (_gamePlayer.countryOfOrigin == CountryOfOrigin.Mexico || _gamePlayer.countryOfOrigin == CountryOfOrigin.Phillipines))
             {
                 Console.WriteLine("Single children over age 21 can apply! Your parent can petition for you. " +
                     "Your processing time could be 10-15 years or more. ");
-                Console.WriteLine(WinnersText());
-                Console.ResetColor();
-                PlayAgain();
+                
+                WinnersText();
             }
-            else if (answer2.ToLower() == "lpr" && _gamePlayer.Age > 21 && _gamePlayer.MaritalStatus == MaritalStatus.Single && (_gamePlayer.countryOfOrigin == CountryOfOrigin.India || _gamePlayer.countryOfOrigin == CountryOfOrigin.Other))
+            else if (answer2.ToLower() == "lpr" && _gamePlayer.Age > 21 && _gamePlayer.MaritalStatus == MaritalStatus.Single 
+                && (_gamePlayer.countryOfOrigin == CountryOfOrigin.India || _gamePlayer.countryOfOrigin == CountryOfOrigin.Other))
             {
                 Console.WriteLine("Single children over age 21 can apply! Your parent can petition for you. " +
                     "Your processing time could be 5 years or more.");
-                Console.WriteLine(WinnersText());
-                Console.ResetColor();
-                PlayAgain();
+                
+                WinnersText();
             }
             else if (answer2.ToLower() == "lpr" && _gamePlayer.MaritalStatus == MaritalStatus.Married)
             {
@@ -408,15 +410,13 @@ namespace Immigration.UI
             else
             {
                 Console.ForegroundColor = ConsoleColor.DarkRed;
-                Console.WriteLine("You must enter a valid answer.");
+                Console.WriteLine("\nYou must enter a valid answer.");
                 Console.ResetColor();
                 UscLprMethod();
             }
-
-
-
         }
-        public string WinnersText()
+
+        public void WinnersText()
         {
             Console.ForegroundColor = ConsoleColor.Green;
             string winnersText =@"
@@ -433,7 +433,9 @@ namespace Immigration.UI
                                                                                                                      
                                                                                                                      
             ";
-            return winnersText;
+            Console.WriteLine(winnersText);
+            Console.ResetColor();
+            PlayAgain();
         }
     }
 }
