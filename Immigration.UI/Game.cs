@@ -65,7 +65,7 @@ namespace Immigration.UI
 
         public void GetPlayerProperties()
         {
-            Console.WriteLine("What is your character Married or Single? \n 1) Married \n 2) Single");
+            Console.WriteLine("Hello and welcome to The Green Card Game! Your character wants to get a green card. \n Can you help your character make the right choices to get the green card? You get to choose your character's marital status, age, and country of origin. The choices you make could affect \n whether your not you win the game! Let's get started -   \n Is your character Married or Single? You can type 1 for Married or 2 for Single. \n 1) Married \n 2) Single");
             string maritalSatus = Console.ReadLine();
             var mStatus = Convert.ToInt32(maritalSatus);
 
@@ -78,7 +78,7 @@ namespace Immigration.UI
                     _gamePlayer.MaritalStatus = MaritalStatus.Single;
                     break;
                 default:
-                    Console.WriteLine("Hey! You did not give us the right answer.\n Do you want to change the answwer?\n");
+                    Console.WriteLine("That is not a valid answer. You must enter 1 for Married or 2 for Single. \n Do you want to try again?\n");
                     var retry = Console.ReadLine();
                     if(retry.ToLower() =="y")
                     {
@@ -93,30 +93,38 @@ namespace Immigration.UI
 
             SetPlayerDOB();
 
-            Console.WriteLine("What is your character's Country of Origin? 1) India 2) Mexico 3) Phillipines 4) Other");
-            string coo = Console.ReadLine();
-
-            switch (coo)
+            Console.WriteLine("What is your character's country of origin? 1) India 2) Mexico 3) Phillipines 4) Other? \n Choose 1, 2, 3, or 4 below.");
+            string input = Console.ReadLine();
+            if (int.TryParse(input,out int coo))
             {
-                case "1":
-                    _gamePlayer.countryOfOrigin = CountryOfOrigin.India;
-                    break;
-                case "2":
-                    _gamePlayer.countryOfOrigin = CountryOfOrigin.Mexico;
-                    break;
-                case "3":
-                    _gamePlayer.countryOfOrigin = CountryOfOrigin.Mexico;
-                    break;
-                default:
-                    _gamePlayer.countryOfOrigin = CountryOfOrigin.Other;
-                    break;
+
+                switch (coo)
+                {
+                    case 1:
+                        _gamePlayer.countryOfOrigin = CountryOfOrigin.India;
+                        break;
+                    case 2:
+                        _gamePlayer.countryOfOrigin = CountryOfOrigin.Mexico;
+                        break;
+                    case 3:
+                        _gamePlayer.countryOfOrigin = CountryOfOrigin.Phillipines;
+                        break;
+                    case 4:
+                        _gamePlayer.countryOfOrigin = CountryOfOrigin.Other;
+                        break;
+                    default:
+                        Console.WriteLine("You can only choose from 1, 2, 3, or 4.");
+                        break;
+                }
             }
+            else Console.WriteLine ("You did not type an integer.");
+
         }
 
         public void PresentOpportunities()
         {
-            Console.WriteLine("Hi, Player You have the opportunity to immigrate by family, skill, or some other way.\n" +
-                " Choose 1, 2, or 3 below:\n" +
+            Console.WriteLine("Do you want to try to immigrate by family, skill, or some other way?\n" +
+                "Choose 1, 2, or 3 below:\n" +
                 "1) Family\n" +
                 "2) Skill\n" +
                 "3) Some other way\n");
@@ -140,7 +148,6 @@ namespace Immigration.UI
                 PresentOpportunities();
             }
         }
-
         public void MigrateByFamily()
         {
             Console.WriteLine("You want to immigrate by family? Ok, do you have a spouse or parent who is a US citizen or Lawful Permanent Resident? Y or N?");
@@ -204,8 +211,6 @@ namespace Immigration.UI
                 else
                     Console.WriteLine("You must choose Y or N.");
             }
-
-
         }
 
         public void MigrateBySkill()
@@ -230,9 +235,7 @@ namespace Immigration.UI
             }
 
             PlayAgain();
-
         }
-
         public void PlayAgain()
         {
             Console.WriteLine("\nWant to play again? Y or N");
