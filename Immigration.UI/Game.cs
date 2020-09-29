@@ -6,14 +6,6 @@ namespace Immigration.UI
 {
     public class Game
     {
-
-        //we can put the data for the questions in here, an array of numbers
-        //we can put the 
-        //put a string array of all the text of the questions, that has to match the enum (an object) and the answer list - like "questionTextListString"
-
-        //and maybe a FlowArray |[ ] , [ ] , | - a multidimensional array - That tells them where they are on the flowchart. They will
-        //always come in at 0 on the FlowArray |[ 0, 1, 50] , [ 3, 4, 40 ] , [6 , 3, 33 ]
-
         public readonly Player _gamePlayer = new Player();
 
         public void Play()
@@ -79,6 +71,7 @@ namespace Immigration.UI
                         _gamePlayer.MaritalStatus = MaritalStatus.Single;
                         break;
                     default:
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
                         Console.WriteLine("That is not a valid answer. You must enter 1 for Married or 2 for Single. \n Do you want to try again?\n");
                         var retry = Console.ReadLine();
                         if (retry.ToLower() == "y")
@@ -89,6 +82,7 @@ namespace Immigration.UI
                         {
                             GameMenu();
                         }
+                        Console.ResetColor();
                         break;
                 }
             }
@@ -132,7 +126,7 @@ namespace Immigration.UI
             else
             {
                 Console.ForegroundColor = ConsoleColor.DarkRed;
-                Console.WriteLine("You can only choose 1, 2 or 3") ;
+                Console.WriteLine("You can only choose 1, 2 or 3");
                 Console.ResetColor();
                 PresentOpportunities();
             }
@@ -175,11 +169,14 @@ namespace Immigration.UI
 
             if (karma.Next(100) == luck)
             {
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
                 Console.WriteLine("Congratulations!! You had a 1 in 100 chance of winning the green card lottery in this game. In real life, it's much less.");
+                Console.WriteLine(WinnersText());
+                Console.ResetColor();
             }
             else
             {
-                Console.WriteLine("Sorry!! You lost the green card lottery. \n You might win if you play again. Better luck next time."); 
+                Console.WriteLine("Sorry!! You lost the green card lottery. \n You might win if you play again. Better luck next time.");
             }
 
             PlayAgain();
@@ -190,7 +187,7 @@ namespace Immigration.UI
             var answer = Console.ReadLine();
             if (answer.ToLower() == "y")
                 GameMenu();
-            else SayGoodBye(); 
+            else SayGoodBye();
         }
 
         public void SayGoodBye()
@@ -204,9 +201,9 @@ namespace Immigration.UI
 
         public int GetDOBYear()
         {
-            Console.WriteLine("Enter the Year the character was born in:\n");
+            Console.WriteLine("Enter the year the character was born:\n");
             string input = Console.ReadLine();
-            if(int.TryParse(input, out int dobYear))
+            if (int.TryParse(input, out int dobYear))
             {
                 if (dobYear > 1900 && dobYear <= DateTime.Now.Year)
                 {
@@ -305,12 +302,12 @@ namespace Immigration.UI
             // Set player's DOB 
             _gamePlayer.DateOfBirth = new DateTime(dobYear, dobMonth, dobDay);
         }
-        
-        public void SetPlayerCOO() 
-            {
 
-                Console.WriteLine("What is your character's country of origin? 1) India 2) Mexico 3) Phillipines 4) Other? \n Choose 1, 2, 3, or 4 below.");
-                string input = Console.ReadLine();
+        public void SetPlayerCOO()
+        {
+
+            Console.WriteLine("What is your character's country of origin? 1) India 2) Mexico 3) Phillipines 4) Other? \n Choose 1, 2, 3, or 4 below.");
+            string input = Console.ReadLine();
             if (int.TryParse(input, out int coo))
             {
 
@@ -357,6 +354,8 @@ namespace Immigration.UI
             {
                 Console.WriteLine("Congratulations! You can get your green card after about 10-15 years of processing time. " +
                     "Don't plan the party too early.");
+                Console.WriteLine(WinnersText());
+                Console.ResetColor();
                 PlayAgain();
             }
             else if (answer2.ToLower() == "usc" && _gamePlayer.Age > 21 && (_gamePlayer.countryOfOrigin != CountryOfOrigin.Mexico || _gamePlayer.countryOfOrigin == CountryOfOrigin.Phillipines))
@@ -364,12 +363,15 @@ namespace Immigration.UI
                 Console.WriteLine("You can get your green card after about 3-4 years of processing time through your parent. " +
                     "If you’re married to a USC citizen, you might get your green card in as little as 90 days" +
                     "…or it might take a couple of years of processing time.");
+                Console.WriteLine(WinnersText());
                 PlayAgain();
             }
             else if (answer2.ToLower() == "usc" && _gamePlayer.IsMinor)
             {
                 Console.WriteLine("This is one of the quickest ways to get a green card! Your processing time will probably take three months to; 1.5 years! " +
                     "Want to play again?");
+                Console.WriteLine(WinnersText());
+                Console.ResetColor();
                 PlayAgain();
             }
             else if (answer2.ToLower() == "lpr" && _gamePlayer.IsMinor && _gamePlayer.MaritalStatus == MaritalStatus.Single)
@@ -377,18 +379,24 @@ namespace Immigration.UI
                 Console.WriteLine("Single children under age 21 can apply! Your processing time could be 1-4 years, " +
                     "but be careful you don't have any inadmissibility issues, and don't get married unless your parent becomes a US citizen first! " +
                     "Play the inadmissiblity game later, coming soon, DLC only $500!");
+                Console.WriteLine(WinnersText());
+                Console.ResetColor();
                 PlayAgain();
             }
             else if (answer2.ToLower() == "lpr" && _gamePlayer.IsMinor && _gamePlayer.MaritalStatus == MaritalStatus.Single && (_gamePlayer.countryOfOrigin == CountryOfOrigin.Mexico || _gamePlayer.countryOfOrigin == CountryOfOrigin.Phillipines))
             {
                 Console.WriteLine("Single children over age 21 can apply! Your parent can petition for you. " +
                     "Your processing time could be 10-15 years or more. ");
+                Console.WriteLine(WinnersText());
+                Console.ResetColor();
                 PlayAgain();
             }
             else if (answer2.ToLower() == "lpr" && _gamePlayer.Age > 21 && _gamePlayer.MaritalStatus == MaritalStatus.Single && (_gamePlayer.countryOfOrigin == CountryOfOrigin.India || _gamePlayer.countryOfOrigin == CountryOfOrigin.Other))
             {
                 Console.WriteLine("Single children over age 21 can apply! Your parent can petition for you. " +
                     "Your processing time could be 5 years or more.");
+                Console.WriteLine(WinnersText());
+                Console.ResetColor();
                 PlayAgain();
             }
             else if (answer2.ToLower() == "lpr" && _gamePlayer.MaritalStatus == MaritalStatus.Married)
@@ -409,11 +417,26 @@ namespace Immigration.UI
 
 
         }
-   
-
-
-
-
+        public string WinnersText()
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            string winnersText =@"
+                                                                                                                     
+                                                                                                                     
+              |\     /|  (  ___  )  |\     /|    |\     /|  \__   __/  ( (    /|  ( )
+              ( \   / )  | (   ) |  | )   ( |    | )   ( |     ) (     |  \  ( |  | |
+               \ (_) /   | |   | |  | |   | |    | | _ | |     | |     |   \ | |  | |
+                \   /    | |   | |  | |   | |    | |( )| |     | |     | (\ \) |  | |
+                 ) (     | |   | |  | |   | |    | || || |     | |     | | \   |  (_)
+                 | |     | (___) |  | (___) |    | () () |  ___) (___  | )  \  |   _ 
+                 \_/     (_______)  (_______)    (_______)  \_______/  |/    )_)  (_)
+                                                                                                                     
+                                                                                                                     
+                                                                                                                     
+            ";
+            return winnersText;
+            
+        }
     }
 }
 
