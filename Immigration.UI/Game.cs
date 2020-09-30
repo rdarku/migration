@@ -56,7 +56,7 @@ namespace Immigration.UI
             Console.WriteLine("Hello and welcome to The Green Card Game! Your character wants to get a green card. " +
                 "\n Can you help your character make the right choices to get the green card? " +
                 "\n You get to choose your character's marital status, age, and country of origin. " +
-                "\n The choices you make could affect \n whether your not you win the game! \n Let's get started -   \n");
+                "\n The choices you make could affect \n whether or not you win the game! \n Let's get started -   \n");
 
             SetPlayerMaritalStatus();
 
@@ -101,7 +101,7 @@ namespace Immigration.UI
             var answer = Console.ReadLine();
             if (answer.ToLower() == "n")
             {
-                Console.WriteLine("Sorry, you lost! You can't immigrate this way. \n Want to try another way? Hit any key to play again.");
+                Console.WriteLine("Sorry, you lost! You can't immigrate this way. \n Want to try another way? \nHit any key to play again.");
                 Console.ReadKey();
                 Console.ResetColor();
                 GameMenu();
